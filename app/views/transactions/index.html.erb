@@ -1,0 +1,6 @@
+<% @transactions.each do |transaction| %>
+  <%= transaction.transaction_date %>
+  <%= transaction.payee.name %>
+  <%= transaction.category.name %>
+  <%= transaction.amount_cents %>
+<% end %>
