@@ -1,24 +1,24 @@
 <%= turbo_frame_tag :transactions_table do %>
-<table>
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Payee</th>
-      <th>Category</th>
-      <th>Amount</th>
-      <th>Note</th>
-    </tr>
+  <table class="table table-hover table-sm">
     <thead>
-      <tbody>
-        <% transactions.each do |transaction| %>
-          <tr>
-            <td><%= transaction.transaction_date %></td>
-            <td><%= transaction.payee.name %></td>
-            <td><%= transaction.category.name %></td>
-            <td><%= transaction.amount_cents %></td>
-            <td><%= transaction.note %></td>
-          <tr>
-        <% end %>
-      </tbody>
-</table>
+      <tr>
+        <th>Date</th>
+        <th>Payee</th>
+        <th>Category</th>
+        <th>Amount</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% transactions.each do |transaction| %>
+        <tr>
+          <td><%= transaction.transaction_date %></td>
+          <td><%= transaction.payee.name %></td>
+          <td><%= transaction.category.name %></td>
+          <td><%= transaction.amount_cents %></td>
+          <td><%= transaction.note %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>

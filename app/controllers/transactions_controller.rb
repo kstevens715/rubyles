@@ -26,6 +26,6 @@ class TransactionsController < ApplicationController
   end
 
   def render_transactions_table
-    render turbo_stream: turbo_stream.replace('transactions_table', partial: "transactions/table", locals: { transactions: Transaction.all })
+    render turbo_stream: turbo_stream.replace('transactions_table', partial: "transactions/table", locals: { transactions: Transaction.all.order(transaction_date: :desc, id: :desc) })
   end
 end

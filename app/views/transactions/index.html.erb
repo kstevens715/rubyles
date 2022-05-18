@@ -1,14 +1,25 @@
+<%# Move this to a partial and make it inline style: %>
+<%# https://getbootstrap.com/docs/5.1/forms/layout/#inline-forms %>
 <%= turbo_frame_tag :transactions_form do %>
-  <%= form_with model: @new_transaction do |f| %>
-    <%= f.label :transaction_date, 'Transaction Date:' %>
-    <%= f.date_field :transaction_date %>
-    <%= f.label :amount_cents, 'Amount:' %>
-    <%= f.text_field :amount_cents %>
-    <%= f.collection_select :payee_id, Payee.all, :id, :name %>
-    <%= f.collection_select :category_id, Category.all, :id, :name %>
-    <%= f.label :note, 'Note:' %>
-    <%= f.text_field :note %>
-    <%= f.submit %>
+  <%= form_with model: @new_transaction, class: 'row row-cols-lg-auto g-3 align-items-center' do |f| %>
+    <div class="col">
+      <%= f.date_field :transaction_date, class: 'form-control' %>
+    </div>
+    <div class="col">
+      <%= f.collection_select :payee_id, Payee.all, :id, :name, {}, class: 'form-control' %>
+    </div>
+    <div class="col">
+      <%= f.collection_select :category_id, Category.all, :id, :name, {}, class: 'form-control' %>
+    </div>
+    <div class="col">
+      <%= f.text_field :amount_cents, class: 'form-control' %>
+    </div>
+    <div class="col">
+      <%= f.text_field :note, class: 'form-control' %>
+    </div>
+    <div class="col">
+      <%= f.submit class: 'btn btn-primary', type: 'submit' %>
+    </div>
   <% end %>
 <% end %>
 
