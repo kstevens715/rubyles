@@ -1,6 +1,15 @@
-<% @transactions.each do |transaction| %>
-  <%= transaction.transaction_date %>
-  <%= transaction.payee.name %>
-  <%= transaction.category.name %>
-  <%= transaction.amount_cents %>
+<%= turbo_frame_tag :transactions_form do %>
+  <%= form_with model: @new_transaction do |f| %>
+    <%= f.label :transaction_date, 'Transaction Date:' %>
+    <%= f.date_field :transaction_date %>
+    <%= f.label :amount_cents, 'Amount:' %>
+    <%= f.text_field :amount_cents %>
+    <%= f.collection_select :payee_id, Payee.all, :id, :name %>
+    <%= f.collection_select :category_id, Category.all, :id, :name %>
+    <%= f.label :note, 'Note:' %>
+    <%= f.text_field :note %>
+    <%= f.submit %>
+  <% end %>
 <% end %>
+
+<%= turbo_frame_tag :transactions_table, src: '/transactions/table' %>
